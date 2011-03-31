@@ -44,8 +44,8 @@
   function initialize() {
     var mapOptions = {
       zoom: 14,
-      center: new google.maps.LatLng(44.939066 , -123.029945), //salem
-     // center: new google.maps.LatLng(44.052524,-121.297231 ), //bend
+     // center: new google.maps.LatLng(44.939066 , -123.029945), //salem
+      center: new google.maps.LatLng(44.052524,-121.297231 ), //bend
       
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
@@ -53,21 +53,20 @@
     var map = new google.maps.Map(document.getElementById("map_canvas"),
         mapOptions);
         
-    for (var school in citymap) {
+    for (var school in bendmap) {
       // Construct the circle for each value in citymap. We scale population by 20.
-    /*  geocoder.geocode( { 'address': bendmap[school].address }, function(results, status) {
+      geocoder.geocode( { 'address': bendmap[school].address }, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
         map: map, 
         position: results[0].geometry.location
-        });`
+        });
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
-*/
 
+/*
       var populationOptions = {
         strokeColor: "#FF0000",
         strokeOpacity: 0.8,
@@ -84,7 +83,7 @@
           map: map, 
           title: citymap[school].name
       });  
-    
+   */ 
     
     }
   }
