@@ -11,51 +11,72 @@
     src="http://maps.google.com/maps/api/js?sensor=false">
 </script>
 <script type="text/javascript">
-//(44.939066 , -123.029945)
-    // Create an object containing LatLng, population.
-var http_request;
-var myObject = {};
-http_request =new XMLHttpRequest();
-var url="http://www.oregonvoices.org/schools.json";
-http_request.open("GET",url,true);
-/*http_request.onreadystatechange = function () {
-  if (http_request.readyState == 4 && http_request.status == 200){
-       myObject = JSON.parse( http_request.responseText );
-       alert("made it");
-  }
-};
-*/
-//myObject = JSON.parse(http_request.responseText);
-alert(http_request.responseText);
-http_request.send(null);
-  var citymap = {};
-//  citymap['heritage school'] = {
-//    center: new google.maps.LatLng(44.899461 , -123.013873),
-//  };
-  citymap['richmond elementary'] = {
-    center: new google.maps.LatLng(44.929567, -123.013363),
-    name: 'richmond elementary'
-  };
-  citymap['court street christian child care'] = {
-    center: new google.maps.LatLng(44.936542, -123.019606),
-    name: 'court street christian child care',
-  };
-  citymap['st joseph school'] = {
-    center: new google.maps.LatLng(44.941449 , -123.030740),
-    name: 'st joseph school',
-  }
   var bendmap = {};
   bendmap['Bend Senior High School'] = {
     address: '230 Northeast 6th Street, Bend, OR',
     name: 'Bend Senior High School',
   }
+
+bendmap['Central Oregon Community College    '] = {
+name : 'Central Oregon Community College    ',
+address : '2600 Northwest College Way, Bend, OR',
+Category: 'School'
+}
+ 
+bendmap['Summit High School'] = {
+name : 'Summit High School',
+address : '2855 NW Clearwater Dr, Bend, OR'
+}
+ 
+bendmap['St. Francis of Assisi School'] = {
+name : 'St. Francis of Assisi School',
+address : '2450 NE 27th St, Bend, Oregon'
+}
+
+bendmap['Cascades Academy of Central Oregon'] = {
+name : 'Cascades Academy of Central Oregon',
+address : '2150 NE Studio Rd # 2, Bend, OR',
+Category: 'School'
+}
+ 
+bendmap['Trinity Lutheran School'] = {
+name : 'Trinity Lutheran School',
+address : '2550 NE Butler Market Rd, Bend, Oregon'
+}
+ 
+bendmap['Marshall High School'] = {
+name : 'Marshall High School',
+address : '1291 Northeast 5th Street, Bend, OR'
+}
+
+bendmap['Highland School at Kenwood Elementary School'] = {
+name : 'Highland School at Kenwood Elementary School',
+address : '701 Northwest Newport Avenue, Bend, OR'
+}
+ 
+bendmap['Seven Peaks Elementary School'] = {
+name : 'Seven Peaks Elementary School',
+address : '19660 Mountaineer Way, Bend, OR'
+}
+
+bendmap['Bend-La Pine Public Schools'] = {
+name : 'Bend-La Pine Public Schools',
+address : '520 Northwest Wall Street, Bend, OR'
+}
+
+bendmap['Mountain View High School'] = {
+name : 'Mountain View High School',
+address : '2755 Northeast 27th Street, Bend, OR'
+}
+
+bendmap['R E Jewell Elementary School'] = {
+name : 'R E Jewell Elementary School',
+address : '20550 Murphy Road, Bend, OR'
+}
   var centermap;
 
-  var cityCircle;
-  var citymarker;
-  var geocoder;
-  var testmarker;
-  var mapmarker;
+  var schoolCircle;
+  var schoolMarker;
   var geocoder;
 
   function initialize() {
@@ -88,8 +109,8 @@ http_request.send(null);
             center: results[0].geometry.location,
             radius: 305,
           };
-          cityCircle = new google.maps.Circle(populationOptions);
-          citymarker = new google.maps.Marker({
+          schoolCircle = new google.maps.Circle(populationOptions);
+          schoolMarker = new google.maps.Marker({
               position: results[0].geometry.location,
               map: map, 
               title: bendmap[school].name
