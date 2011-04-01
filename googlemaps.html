@@ -16,14 +16,17 @@
 var http_request;
 var myObject = {};
 http_request =new XMLHttpRequest();
-var url="schools.json";
+var url="http://www.oregonvoices.org/schools.json";
 http_request.open("GET",url,true);
-http_request.onreadystatechange = function () {
+/*http_request.onreadystatechange = function () {
   if (http_request.readyState == 4 && http_request.status == 200){
        myObject = JSON.parse( http_request.responseText );
        alert("made it");
   }
 };
+*/
+//myObject = JSON.parse(http_request.responseText);
+alert(http_request.responseText);
 http_request.send(null);
   var citymap = {};
 //  citymap['heritage school'] = {
