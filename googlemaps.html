@@ -40,8 +40,11 @@
   var citymarker;
   var geocoder;
   var testmarker;
+  var mapmarker;
+  var geocoder;
 
   function initialize() {
+    geocoder = new google.maps.Geocoder();
     var mapOptions = {
       zoom: 14,
      // center: new google.maps.LatLng(44.939066 , -123.029945), //salem
@@ -55,17 +58,45 @@
         
     for (var school in bendmap) {
       // Construct the circle for each value in citymap. We scale population by 20.
-      geocoder.geocode( { 'address': bendmap[school].address }, function(results, status) {
+      var georequest = {
+        address: bendmap[school].address,
+      }
+      geocoder.geocode( georequest, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+          var populationOptions = {
+            strokeColor: "#FF0000",
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: "#FF0000",
+            fillOpacity: 0.35,
+            map: map,
+            center: results[0].geometry.location,
+            radius: 305,
+          };
+          cityCircle = new google.maps.Circle(populationOptions);
+          citymarker = new google.maps.Marker({
+              position: results[0].geometry.location,
+              map: map, 
+              title: bendmap[school].name
+          });  
+          } else {
+            alert("Geocode was not successful for the following reason: " + status);
+          }
+    });
+/*
+    geocoder.geocode( { 'address': address}, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
+        map.setCenter(results[0].geometry.location);
         var marker = new google.maps.Marker({
-        map: map, 
-        position: results[0].geometry.location
+            map: map, 
+            position: results[0].geometry.location
         });
       } else {
         alert("Geocode was not successful for the following reason: " + status);
       }
     });
 
+*/
 /*
       var populationOptions = {
         strokeColor: "#FF0000",
