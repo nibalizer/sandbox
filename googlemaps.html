@@ -13,6 +13,18 @@
 <script type="text/javascript">
 //(44.939066 , -123.029945)
     // Create an object containing LatLng, population.
+var http_request;
+var myObject = {};
+http_request =new XMLHttpRequest();
+var url="schools.json";
+http_request.open("GET",url,true);
+http_request.onreadystatechange = function () {
+  if (http_request.readyState == 4 && http_request.status == 200){
+       myObject = JSON.parse( http_request.responseText );
+       alert("made it");
+  }
+};
+http_request.send(null);
   var citymap = {};
 //  citymap['heritage school'] = {
 //    center: new google.maps.LatLng(44.899461 , -123.013873),
@@ -83,38 +95,6 @@
             alert("Geocode was not successful for the following reason: " + status);
           }
     });
-/*
-    geocoder.geocode( { 'address': address}, function(results, status) {
-      if (status == google.maps.GeocoderStatus.OK) {
-        map.setCenter(results[0].geometry.location);
-        var marker = new google.maps.Marker({
-            map: map, 
-            position: results[0].geometry.location
-        });
-      } else {
-        alert("Geocode was not successful for the following reason: " + status);
-      }
-    });
-
-*/
-/*
-      var populationOptions = {
-        strokeColor: "#FF0000",
-        strokeOpacity: 0.8,
-        strokeWeight: 2,
-        fillColor: "#FF0000",
-        fillOpacity: 0.35,
-        map: map,
-        center: citymap[school].center,
-        radius: 305,
-      };
-      cityCircle = new google.maps.Circle(populationOptions);
-      citymarker = new google.maps.Marker({
-          position: citymap[school].center,
-          map: map, 
-          title: citymap[school].name
-      });  
-   */ 
     
     }
   }

@@ -1,0 +1,5 @@
+var listschools = {"schools" : [
+    {'address': '230 Northeast 6th Street, Bend, OR','name':     'Bend Senior High School', 'class':    'High School' }
+    ]
+};
+
